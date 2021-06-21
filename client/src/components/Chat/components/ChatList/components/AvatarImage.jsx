@@ -5,17 +5,13 @@ import ChatIcon from "./ChatIcon";
 
 const AvatarImage = ({ name, id }) => {
   const url = useMemo(() => {
-    const av = getAvatarByUserAndRoomId("" + id);
-    if (name === "Mary") {
-      return `${process.env.PUBLIC_URL}/avatars/0.jpg`;
-    } else if (name === "Pablo") {
-      return `${process.env.PUBLIC_URL}/avatars/2.jpg`;
-    } else if (name === "Joe") {
-      return `${process.env.PUBLIC_URL}/avatars/9.jpg`;
-    } else if (name === "Alex") {
-      return `${process.env.PUBLIC_URL}/avatars/8.jpg`;
+    if (!name) {
+      return `https://robohash.org/${id}.png?set=set4`
+    } else if (['Dev', 'Backend', 'Frontend'].includes(name)) {
+      return `https://robohash.org/${name}.png?set=set3`
+    } else {
+      return `https://robohash.org/${name}.png`
     }
-    return av;
   }, [id, name]);
 
   return (
