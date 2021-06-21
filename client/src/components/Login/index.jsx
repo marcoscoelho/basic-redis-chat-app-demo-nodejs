@@ -8,10 +8,8 @@ import { useEffect } from "react";
 const DEMO_USERS = ["Pablo", "Joe", "Mary", "Alex"];
 
 export default function Login({ onLogIn }) {
-  const [username, setUsername] = useState(
-    () => DEMO_USERS[Math.floor(Math.random() * DEMO_USERS.length)]
-  );
-  const [password, setPassword] = useState("password123");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
   const onSubmit = async (event) => {
@@ -77,14 +75,21 @@ export default function Login({ onLogIn }) {
               borderBottomRightRadius: 4,
             }}
             onSubmit={onSubmit}
+            autoComplete="off"
           >
             <label className="font-size-12">Name</label>
 
             <div className="username-select mb-3">
-              <UsernameSelect
-                username={username}
-                setUsername={setUsername}
-                names={DEMO_USERS}
+              <input
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+                type="text"
+                id="inputUsername"
+                autoComplete="off"
+                tabIndex={0}
+                className="form-control"
+                placeholder="Username"
+                required
               />
             </div>
 
@@ -97,6 +102,7 @@ export default function Login({ onLogIn }) {
               type="password"
               id="inputPassword"
               className="form-control"
+              autoComplete="off"
               placeholder="Password"
               required
             />
